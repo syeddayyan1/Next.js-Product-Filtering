@@ -159,6 +159,19 @@ const filteredProducts = products.filter((product) => {
                   {product.category}
                 </p>
               </div>
+
+              <div>
+                
+                <button onClick={() => router.push(`/products/${product.id}`)}
+                  className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold
+             text-white transition hover:bg-blue-700">
+                
+               View Details
+
+                </button>  
+            
+        
+              </div>
           </div>
           </div>
         ))}

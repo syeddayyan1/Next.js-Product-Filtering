@@ -22,3 +22,23 @@ export function useGetProducts() {
     };
     
 };
+
+
+
+export function useGetProductsById(id) {
+    const { data, isPending, isError, error } = useQuery({
+        queryKey: ["products", id],
+        queryFn: async () => {
+            const response = await api.get(endpoints.productsById(id))
+            return response.data;
+        }, 
+    });
+
+    return {
+        products: data ,
+        isError,
+        isPending,
+        error
+}
+};
+
