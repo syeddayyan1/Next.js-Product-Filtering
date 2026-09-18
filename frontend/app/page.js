@@ -1,6 +1,5 @@
 "use client";
 
-import ProductCard from "./components/ProductCard";
 import { useGetProducts } from "@/api/client/product";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -132,7 +131,7 @@ const filteredProducts = products.filter((product) => {
         {filteredProducts.map((product) => (
           <div
             key={product.id}
-            className="group overflow-hidden rounded-2xl bg-white shadow-sm transition duration-300 
+            className="group overflow-hidden rounded-2xl bg-white  transition duration-300 
             hover:-translate-y-1 hover:shadow-xl"
           >
             <div className="flex h-64 items-center justify-center overflow-hidden bg-gray-50 p-6">
@@ -144,8 +143,8 @@ const filteredProducts = products.filter((product) => {
             </div>
 
             <div className="p-5">
-              <h2 className="text-lg font-bold text-gray-900">
-                {product.name}
+              <h2 className="text-lg font-bold text-gray-600 mt-2">
+                {product.title}
               </h2>
 
               <div className="mt-3 flex items-center justify-between">
@@ -154,24 +153,21 @@ const filteredProducts = products.filter((product) => {
                 </p>
               </div>
 
-               <div className="mt-3 flex items-center justify-between capitalize">
-                <p className="text-xl font-bold text-blue-600">
+               <div className=" flex items-center justify-between capitalize">
+                <p className="text-md font-semibold text-blue-600">
                   {product.category}
                 </p>
-              </div>
 
-              <div>
-                
-                <button onClick={() => router.push(`/products/${product.id}`)}
+               <button onClick={() => router.push(`/products/${product.id}`)}
                   className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold
              text-white transition hover:bg-blue-700 mt-3 mr-1">
                 
                View Details
 
-                </button>  
-            
-        
+                </button>
+
               </div>
+
           </div>
           </div>
         ))}

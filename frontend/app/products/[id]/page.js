@@ -26,7 +26,7 @@ export default function page({ params }) {
         border border-gray-800 bg-gray-900 shadow-2xl md:grid-cols-2">
 
           {/* Product Image */}
-          <div className="flex min-h-[450px] items-center justify-center bg-white p-10">
+          <div className="flex min-h-112 items-center justify-center bg-white p-10">
             <img
               src={products.thumbnail}
               className="max-w-full max-h-95
@@ -46,7 +46,7 @@ export default function page({ params }) {
             </h1>
 
             <p className="mt-5 text-3xl font-bold text-blue-400">
-              ${products.price}
+              Rs: {products.price}
             </p>
 
             <p className="mt-6 leading-7 text-gray-400">
