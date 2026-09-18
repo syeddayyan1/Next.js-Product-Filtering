@@ -2,6 +2,7 @@
 
 import { use } from "react";
 import { useGetProductsById } from "@/api/client/product";
+import { motion } from "motion/react";
 
 
 export default function page({ params }) {
@@ -27,7 +28,9 @@ export default function page({ params }) {
 
           {/* Product Image */}
           <div className="flex min-h-112 items-center justify-center bg-white p-10">
-            <img
+             <motion.img
+               whileHover={{ scale: 1.3 }}
+               transition={{duration:0.01}}
               src={products.thumbnail}
               className="max-w-full max-h-95
               transition duration-500 hover:scale-105"
@@ -37,27 +40,56 @@ export default function page({ params }) {
           {/* Product Details */}
           <div className="flex flex-col justify-center p-8 md:p-12">
 
-            <p className="mb-3 text-sm font-semibold uppercase  text-blue-400">
-              {products.category}
-            </p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="mb-3 text-sm font-semibold uppercase text-blue-400"
+          >
+            {products.category}
+          </motion.p>
+          
+          <motion.h1
+            initial={{ opacity: 0, y: 25, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+            className="text-3xl font-bold text-white md:text-4xl"
+          >
+            {products.title}
+          </motion.h1>
+          
+          <motion.p
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            className="mt-5 text-3xl font-bold text-blue-400"
+          >
+            Rs: {products.price}
+          </motion.p>
+          
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+            className="mt-6 leading-7 text-gray-400"
+          >
+            {products.description}
+          </motion.p>
 
-            <h1 className="text-3xl font-bold text-white md:text-4xl">
-              {products.title}
-            </h1>
 
-            <p className="mt-5 text-3xl font-bold text-blue-400">
-              Rs: {products.price}
-            </p>
-
-            <p className="mt-6 leading-7 text-gray-400">
-              {products.description}
-            </p>
-            
             {/* Button */}
-            <button className="mt-8 w-full rounded-xl bg-blue-600 px-6 py-3
-            font-semibold text-white  hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/20">
+             <motion.button
+               whileTap={{duration:0.5,scale:0.9}}
+               whileHover={{scale:0.9}}
+
+               className="mt-8 w-full rounded-xl bg-blue-600 px-6 py-3
+              font-semibold text-white  hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/20">
               Add to Cart
-            </button>
+            </motion.button>
 
           </div>
 

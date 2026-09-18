@@ -4,6 +4,8 @@ import { useGetProducts } from "@/api/client/product";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+import { motion } from "motion/react";
+import { div, main } from "motion/react-client";
 
 const Page = () => {
   const { products, isPending, isError, error } = useGetProducts();
@@ -127,16 +129,33 @@ const filteredProducts = products.filter((product) => {
 
       {/* //  Ui Product Show On Screen */}
 
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-20 -mt-20">
+    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-20 ">
         {filteredProducts.map((product) => (
-          <div
+          < motion.div
+            initial={{ opacity: 0.25, y: 25, scale: 0.98}}
+            whileInView={{opacity: 1,y: 0,scale: 1}}
+
+            viewport={{once: true}}
+            transition={{ duration: 0.3, ease: "easeOut"}}
+
+            // whileHover={{
+            //   scale: 1.09,
+            //   duration:0.3
+            // }}
+
+          
+
             key={product.id}
             className="group overflow-hidden rounded-2xl bg-white  transition duration-300 
             hover:-translate-y-1 hover:shadow-xl"
           >
             <div className="flex h-64 items-center justify-center overflow-hidden bg-gray-50 p-6">
-              <img
+              <motion.img
                src={product.thumbnail}
+                whileHover={{
+                scale: 1.19,
+                duration:0.3
+                }}
 
                 className="h-full w-full object-contain transition duration-300 group-hover:scale-105"
               />
@@ -158,20 +177,26 @@ const filteredProducts = products.filter((product) => {
                   {product.category}
                 </p>
 
-               <button onClick={() => router.push(`/products/${product.id}`)}
+                <motion.button
+                  whileHover={{ scale: 1.2 }}
+                  transition={{ duration: 0.1 }}
+                  onClick={() => router.push(`/products/${product.id}`)}
                   className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold
-             text-white transition hover:bg-blue-700 mt-3 mr-1">
+               text-white transition hover:bg-blue-700 mt-3 mr-1">
                 
                View Details
 
-                </button>
+                </motion.button>
 
               </div>
 
-          </div>
-          </div>
+            </div>
+            
+          </motion.div>
         ))}
-      </div>
+  </div>
+          
+          
     </main>
   );
 };
